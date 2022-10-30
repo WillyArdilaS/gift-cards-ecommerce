@@ -1,4 +1,4 @@
-const Usuario = require("../models/usuario.model.js");
+const Cliente = require("../models/cliente.model.js");
 
 let response = {
     msg: "",
@@ -7,7 +7,7 @@ let response = {
 
 /* Create */ 
 exports.create = function(req, res) {
-    let usuario = new Usuario({
+    let cliente = new Cliente({
         username: req.body.username, 
         contrasena: req.body.contrasena,
         nombre: req.body.nombre,
@@ -16,37 +16,37 @@ exports.create = function(req, res) {
         saldo: req.body.saldo
     })
 
-    usuario.save(function(err) {
+    cliente.save(function(err) {
         if(err) {
             console.error(err),
             response.success = false,
-            response.msg = "Error al guardar el usuario",
+            response.msg = "Error al guardar el cliente",
             res.json(response)
             return;
         }
 
         response.success = true,
-        response.msg = "Usuario guardado con éxito",
+        response.msg = "Cliente guardado con éxito",
         res.json(response)
     })
 }
 
 /* Read */
 exports.find = function(req, res) {
-    Usuario.find(function(err, usuarios) {
-        res.json(usuarios);
+    Cliente.find(function(err, clientes) {
+        res.json(clientes);
     })
 }
 
 exports.findOne = function(req, res) {
-    Usuario.find({username: req.params.username}, function(err, usuario) {
-        res.json(usuario);
+    Cliente.find({username: req.params.username}, function(err, cliente) {
+        res.json(cliente);
     })
 }
 
 /* Update */
 exports.update = function(req, res) {
-    let usuario = ({
+    let cliente = ({
         username: req.body.username, 
         contrasena: req.body.contrasena,
         nombre: req.body.nombre,
@@ -55,17 +55,17 @@ exports.update = function(req, res) {
         saldo: req.body.saldo
     })
 
-    Usuario.findByIdAndUpdate(req.params._id, {$set: usuario}, function(err) {
+    Cliente.findByIdAndUpdate(req.params._id, {$set: cliente}, function(err) {
         if(err) {
             console.error(err),
             response.success = false,
-            response.msg = "Error al actualizar el usuario",
+            response.msg = "Error al actualizar el cliente",
             res.json(response)
             return;
         }
 
         response.success = true,
-        response.msg = "Usuario actualizado con éxito",
+        response.msg = "Cliente actualizado con éxito",
         res.json(response)
     })
 }
