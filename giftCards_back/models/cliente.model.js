@@ -10,4 +10,4 @@ const ClienteSchema = new Schema({
     saldo:{type: mongoose.SchemaTypes.Decimal128, required: true, min: 0}
 });
 
-module.exports = mongoose.model("usuario", ClienteSchema);
+module.exports = mongoose.model("cliente", ClienteSchema);
