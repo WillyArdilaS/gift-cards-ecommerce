@@ -6,7 +6,8 @@ var logger = require('morgan');
 var database = require("./config/database");
 
 var auth = require('./auth/main.auth');
-var clientessRouter = require('./routes/clientes.router');
+var usuariosRouter = require('./routes/usuarios.router');
+var clientesRouter = require('./routes/clientes.router');
 var tarjetasRouter = require('./routes/tarjetas.router');
 var comprasRouter = require('./routes/compras.router');
 
@@ -22,12 +23,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 database.mongoConnect();
 
 // Router
-app.use('/clientes', clientessRouter);
-app.use('/tarjetas', tarjetasRouter);
-app.use('/compras', comprasRouter);
+app.use('/usuarios', usuariosRouter);
 
 /* Authentication */
 app.use(auth);
+
+// Router
+app.use('/clientes', clientesRouter);
+app.use('/tarjetas', tarjetasRouter);
+app.use('/compras', comprasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
