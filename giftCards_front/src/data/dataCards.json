@@ -1,0 +1,26 @@
+[
+    {
+        "id":1001,
+        "nombre": "Disney+ (1 mes)",
+        "categoria": "Streaming",
+        "precio": 25000,
+        "descuento": false,
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713958/Gift%20Cards%20App/Streaming/Disney_wcdvvx.jpg"
+    },
+    {
+        "id": 1002,
+        "nombre": "Netflix (3 meses)",
+        "categoria": "Streaming",
+        "precio": 50000,
+        "descuento": true,
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713958/Gift%20Cards%20App/Streaming/Netflix_ijqwcz.jpg"
+    },
+    {
+        "id": 1003,
+        "nombre": "HBO Max (1 mes)",
+        "categoria": "Streaming",
+        "precio": 20000,
+        "descuento": false,
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713958/Gift%20Cards%20App/Streaming/HBO_Max_ouir2p.jpg"
+    }
+]
