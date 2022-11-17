@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Comida",
+      "url": "https://res.cloudinary.com/dn1k0drir/image/upload/v1663687099/GIft%20Card/Food_qp0q0u.jpg"
+    },
+    {
+      "name": "Música",
+      "url": "https://res.cloudinary.com/dn1k0drir/image/upload/v1663687098/GIft%20Card/Music_lg9fvl.jpg"
+    },
+    {
+      "name": "Streaming",
+      "url": "https://res.cloudinary.com/dn1k0drir/image/upload/v1663687098/GIft%20Card/Streaming_zolkeu.jpg"
+    },
+    {
+      "name": "Videojuegos",
+      "url": "https://res.cloudinary.com/dn1k0drir/image/upload/v1663688565/GIft%20Card/Videogames_cdwxfd.jpg"
+    },
+    {
+      "name": "Ropa",
+      "url": "https://res.cloudinary.com/dn1k0drir/image/upload/v1663687098/GIft%20Card/Cloth_jbytnc.jpg"
+    }
+  ]
