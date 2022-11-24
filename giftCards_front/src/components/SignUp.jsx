@@ -20,7 +20,7 @@ const SignUp = () => {
         e.preventDefault();
 
         if(password !== passwordConfirmation) {
-            alert("Las contraseñas no coinciden")
+            alert("Las contraseñas no coinciden");
         } else {
             axios.post(`http://localhost:3000/clientes`, {
                 username: username,
