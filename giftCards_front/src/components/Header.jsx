@@ -1,6 +1,8 @@
 import 'boxicons'
 import { Link } from 'react-router-dom'
+import { useCartContext } from '../context/CartContext'
 const Header = () => {
+    const { totalProducts } = useCartContext()
     return (
 
         <header className="w-11/12 flex justify-between mx-16 mt-10">
@@ -13,18 +15,26 @@ const Header = () => {
                         > <Link to="/Home">Inicio </Link></li>
                         <li id="navMenu-shopList" className="hover:text-slate-500 transition-colors"
                         > Lista de compras </li>
+                        <li
+                            id="navMenu-shoppingCart" className="hover:text-slate-500 transition-colors">
+                                <Link to="/ShoppingCart">
+                                <box-icon name="cart" color="white"></box-icon>
+                            <span className="item_total">{totalProducts}</span>
+                                </Link>
+                            
+                            
+                        </li>
 
                     </ul>
                 </nav>
             </div>
 
             <div className="flex justify-between items-center w-60">
-                <box-icon name="cart" color="white"></box-icon>
-                <span className="item_total">0</span>
+
                 <h2 id="navMenu-username" className="text-slate-200 font-medium hover:text-slate-500 transition-colors"> Laurita05 </h2>
 
                 <button id="button-exitLogo" className="hover:scale-105">
-                    
+
                     <img src="https://res.cloudinary.com/willyas/image/upload/v1664832455/Gift%20Cards%20App/Exit_Icon_jbdrrc.png" alt="exit logo" id="exitLogo" width="50" height="40" />
                 </button>
             </div>
