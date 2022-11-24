@@ -1,6 +1,7 @@
 
-import Header from "./Header"
-import dataCards from "../data/dataCards.json"
+import Header from "./Header";
+import dataCards from "../data/dataCards.json";
+
 const Cards = () => {
     return (
         <>
@@ -25,22 +26,17 @@ const Cards = () => {
                     {
                         dataCards.map(element => (
                             <article class="mt-12 mx-auto">
-                                <button id={element.categoria} onclick="location.href='';">
+                                <button id={element.categoria}>
                                     <img src={element.ruta_imagen} alt="Imagen de la tarjeta" id="giftCardImage"
                                         class="w-56 h-36 rounded-2xl object-cover  hover:scale-105" />
                                 </button>
                                 <h2 class="mt-2 text-lg text-center text-slate-200"> {element.nombre} </h2>
                                 <h3 class="mt-2 text-lg text-center text-slate-200"> ${element.precio} </h3>
-                                
 
-                                <div>
-                              
-                            </div>
-                            </article>
-                           
-                            
+                                <div> 
+                                </div>
+                            </article>  
                         ))
-
                     }
                 </section>
             </main>
