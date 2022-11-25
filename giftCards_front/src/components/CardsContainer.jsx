@@ -1,15 +1,32 @@
-import Header from "./Header"
-import dataCards from "../data/dataCards.json"
-import { useState ,useEffect} from "react"
-import CardItem from "./CardItem"
-const CardsContainer = () => {
-    const [data, setData]=useState([])
+import Header from "./Header";
+import { useState ,useEffect} from "react";
+import CardItem from "./CardItem";
+import axios from 'axios';
+
+const CardsContainer = ({user, setUser, setIsLogin, categorie}) => {
+    const [data, setData]=useState([]);
+
     useEffect(()=>{ 
-        setData(dataCards)
-    },[])
+        getCards(); 
+    },[]);
+
+    const getCards = () => {
+        axios.get(`http://localhost:3000/tarjetas`)
+        .then((res => {
+            res.data.map((item) => {
+                if(item.categoria == categorie) {
+                    setData(dataElement => [...dataElement, item]);
+                }
+            })  
+        }))
+        .catch((err) => {
+            console.log(err);
+        }); 
+    }
+
     return (
         <>
-            <Header />
+            <Header onPage={"cards"} user={user} setUser={setUser} setIsLogin={setIsLogin}/>
             <main className="container w-4/5 px-6 py-8 mx-auto mt-12 rounded-2xl bg-sky-600">
                 <form>
                     <label htmlFor="searchField"></label>
@@ -27,16 +44,10 @@ const CardsContainer = () => {
                 </form>
 
                 <section id="giftCardsContainer" className="grid grid-cols-3 ">
-                    
                     {
-                        data.map(card=>(
-                            <CardItem 
-                            key={card.id}
-                            info = {card}
-                            />
+                        data.map(card => (
+                            <CardItem key={card.id_tarjeta} info={card} />
                         ))
-                       
-
                     }
                 </section>
             </main>

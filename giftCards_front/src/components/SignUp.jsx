@@ -19,24 +19,39 @@ const SignUp = () => {
     const handleCreateUser = (e) => {
         e.preventDefault();
 
-        if(password !== passwordConfirmation) {
-            alert("Las contraseñas no coinciden");
+        if(!username || !lastName || !username || !email || !password || !passwordConfirmation) {
+            alert("Faltan campos por llenar");
         } else {
-            axios.post(`http://localhost:3000/clientes`, {
-                username: username,
-                contrasena: password,
-                nombre: name,
-                apellido: lastName,
-                email: email,
-                saldo: 20000
-            })
+            axios.get(`http://localhost:3000/clientes/${username}`)
             .then((res) => {
-                alert("Usuario creado");
-                navigate("/LogIn");
+                if(res.data.length > 0) {
+                    alert("El usuario ya existe");
+                } else {
+                    if(password !== passwordConfirmation) {
+                        alert("Las contraseñas no coinciden");
+                    } else {
+                        axios.post(`http://localhost:3000/clientes`, {
+                            username: username,
+                            contrasena: password,
+                            nombre: name,
+                            apellido: lastName,
+                            email: email,
+                            saldo: 20000
+                        })
+                        .then((res) => {
+                            alert("Usuario creado");
+                            navigate("/LogIn");
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        }); 
+                    }
+                }
             })
             .catch((err) => {
+                alert("Error al hacer el registro");
                 console.log(err);
-            });   
+            });
         }
     }
 
