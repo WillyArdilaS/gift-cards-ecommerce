@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = ({setIsLogin}) => {
+const Login = ({setIsLogin, setUser}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,21 +15,30 @@ const Login = ({setIsLogin}) => {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        axios.get(`http://localhost:3000/clientes/${username}`)
-        .then((res) => {
-            if(password !== res.data[0].contrasena) {
-                alert("Contraseña incorrecta"); 
-            } else{
-                setIsLogin(true);
-                navigate("/Home", {
-                    replace: ("/LogIn", true)
-                });
-            }
-        })
-        .catch((err) => {
-            alert("El usuario no está registrado"); 
-            console.log(err);
-        });
+        if(!username || !password) {
+            alert("Faltan campos por llenar");
+        } else {
+            axios.get(`http://localhost:3000/clientes/${username}`)
+            .then((res) => {
+                if(res.data.length == 0) {
+                    alert("El usuario no está registrado"); 
+                } else {
+                    if(password !== res.data[0].contrasena) {
+                        alert("Contraseña incorrecta"); 
+                    } else{
+                        setIsLogin(true);
+                        setUser(username);
+                        navigate("/Home", {
+                            replace: ("/LogIn", true)
+                        });
+                    }
+                }
+            })
+            .catch((err) => {
+                alert("Error al ingresar"); 
+                console.log(err);
+            });
+        }
     }
 
   return (

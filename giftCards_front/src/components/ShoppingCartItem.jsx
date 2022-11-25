@@ -1,8 +1,8 @@
-import React from 'react'
-import { useCartContext } from '../context/CartContext'
+import { useCartContext } from '../context/CartContext';
 
 const ShoppingCartItem = ({ card }) => {
-    const {removeCard} = useCartContext()
+    const {removeCard} = useCartContext();
+
     return (
         <tr className="ml-5 mr-5">
             <td
@@ -90,4 +90,4 @@ const ShoppingCartItem = ({ card }) => {
     )
 }
 
-export default ShoppingCartItem
+export default ShoppingCartItem;
