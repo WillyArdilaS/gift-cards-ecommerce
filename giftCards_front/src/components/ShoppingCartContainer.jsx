@@ -1,10 +1,11 @@
 import React from 'react'
 import { useCartContext } from '../context/CartContext'
+import 'boxicons'
 import Header from './Header'
 import ShoppingCartItem from './ShoppingCartItem'
 
 const ShoppingCartContainer = () => {
-   const {cart,totalPrice}=useCartContext()
+   const { cart, totalPrice } = useCartContext()
 
    if (cart.length === 0) {
       return (
@@ -21,12 +22,43 @@ const ShoppingCartContainer = () => {
 
       <>
          <Header />
-                  
-                     <table className="max-w-screen-2xl overflow-x-auto mt-8 ml-5 mr-5 rounded-2xl">
-                        <thead>
-                           <tr className="bg-blue-500 text-center">
-                              <th
-                                 className="
+
+
+         <table className="max-w-screen-2xl overflow-x-auto mt-8 ml-5 mr-5">
+            <thead >
+               <tr className="bg-blue-500 text-center border-double">
+                  <th
+                     className="w-1/6
+                     min-w-[160px] text-lg font-medium text-white px-3 py-4"
+                  >
+
+                  </th>
+                  <th
+                     className="w-1/6
+                     min-w-[160px] text-lg font-medium text-white px-3 py-4"
+                  >
+                     Nombre
+                  </th>
+                  <th
+                     className="w-1/6
+                     min-w-[160px] text-lg font-medium text-white px-3 py-4"
+                  >
+                     Código de canjeo
+                  </th>
+                  <th
+                     className="w-1/6
+                     min-w-[160px] text-lg font-medium text-white px-3 py-4"
+                  >
+                     Categoria
+                  </th>
+                  <th
+                     className="w-1/6
+                     min-w-[160px] text-lg font-medium text-white px-3 py-4"
+                  >
+                     Precio
+                  </th>
+                  <th
+                     className="
                            w-1/6
                            min-w-[160px]
                            text-lg
@@ -38,97 +70,41 @@ const ShoppingCartContainer = () => {
                            lg:px-4
                            border-l border-transparent
                            "
-                              >
+                  >
 
-                              </th>
-                              <th
-                                 className="
-                           w-1/6
-                           min-w-[160px]
-                           text-lg
-                           font-semibold
-                           text-white
-                           py-4
-                           lg:py-7
-                           px-3
-                           lg:px-4
-                           "
-                              >
-                                 Nombre
-                              </th>
-                              <th
-                                 className="
-                           w-1/6
-                           min-w-[160px]
-                           text-lg
-                           font-semibold
-                           text-white
-                           py-4
-                           lg:py-7
-                           px-3
-                           lg:px-4
-                           "
-                              >
-                                 Código de canjeo
-                              </th>
-                              <th
-                                 className="
-                           w-1/6
-                           min-w-[160px]
-                           text-lg
-                           font-semibold
-                           text-white
-                           py-4
-                           lg:py-7
-                           px-3
-                           lg:px-4
-                           "
-                              >
-                                 Categoria
-                              </th>
-                              <th
-                                 className="
-                           w-1/6
-                           min-w-[160px]
-                           text-lg
-                           font-semibold
-                           text-white
-                           py-4
-                           lg:py-7
-                           px-3
-                           lg:px-4
-                           "
-                              >
-                                 Precio
-                              </th>
-                              <th
-                                 className="
-                           w-1/6
-                           min-w-[160px]
-                           text-lg
-                           font-semibold
-                           text-white
-                           py-4
-                           lg:py-7
-                           px-3
-                           lg:px-4
-                           border-l border-transparent
-                           "
-                              >
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               {
+                  cart.map(card => <ShoppingCartItem key={card.id} card={card} />)
+               }
 
-                              </th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {
-                              cart.map(card => <ShoppingCartItem key={card.id} card={card} />)
-                           }
-                        </tbody>
-                     </table>
+
+               <tr className="border-b text-right">
+                  <td colspan="4"
+                     className="text-lg font-medium text-white px-3 py-4"
+                  >
+                     Total : ${totalPrice()}
+                  </td>
                   
-            
-     
-                  </>
+               </tr>
+            </tbody>
+
+
+         </table>
+         <div classNme="flex flex-col justify-center items-center fixed">
+            <button type="button" className="absolute text-white bg-[#050708] font-medium rounded-lg text-sm px-5 py-2.5 mx-96 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-green-700">
+            <img className="mr-3"src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATtJREFUSEvFle1RwzAQRN9WQAnQAVABpAKgg5QQKsCpAEpIB6QDTAfQAekgHSxzjOzBxh9CJIP+eEaS9+n2pDtx5KEj6zMLsF0BN8AF8AZsJa1zDzYJsF0DVwNitaRFDmQUYHsFPAI7YCmptn0NbIBT4F7S0xxkChB2nAOLEG+EEuQl7JJ0mQ2YsGNOo1kftK2NwLZzlcb2SfrhyL8COt6XRjcawVC4JZBZQGHy24TnAIqS3ziQDWh+sL0HTnp27SSdxVxzG38NaB5cqk0PPcBaUmX7FniOtRJAFLm7dMoogMsE2YR4mm9rVwkgNKqxStqPrBQQkDhlgF7TqaMAhmXxbccQ4CNVya9N35J6sFsUCQovo4IeHjD2Sm13Ist8ze+SogNmtcxOZBmAaFArSdssQIbg5JbZpv9XwCecbbIZmgwnPAAAAABJRU5ErkJggg=="/>
+                  Realizar compra
+            </button>
+         </div>
+        
+         
+
+
+
+      </>
    )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState,useContext } from 'react'
-
+import Swal from 'sweetalert2'
 const CartContext = React.createContext([])
 export const useCartContext = () => useContext(CartContext)
 
@@ -10,15 +10,23 @@ const CartProvider= ({children}) => {
     
     const addCard = (item,quantity)=>{
         if (isInCart(item.id)){
-            setCart(cart.map(card=>{
-                return card.id===item.id ? {...item,quantity:item.quantity+quantity}:item
-            }))
+            Swal.fire({
+                icon: 'info',
+                title: 'Ya agregaste este producto a tu carrito',
+                text: '¡Puedes mirar más opciones!',
+            })
         } else{
             setCart([...cart,{...item, quantity}])
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto agregado a tu carrito',
+                text: '¡Sigue comprando!',
+                
+            })
         }
         
     }
-    console.log('carrito: ', cart)
+   
     const clearCart = () =>setCart([])
 
     const isInCart = (id) => {
@@ -26,15 +34,23 @@ const CartProvider= ({children}) => {
     }
 
     const removeCard = (id) =>{
+        Swal.fire({
+            icon: 'info',
+            title: 'Producto removido de tu carrito',
+            text: '¡Puedes mirar más opciones!',
+        })
         setCart(cart.filter(card=>card.id !== id))
+        
     }
 
     const totalPrice=()=>{
-        return cart.reduce((before,after) => before + after.precio,0)
+        let total = cart.reduce((pre,act) => pre + act.precio,0)
+        return total
     }
 
+    
     let totalProducts = cart.length
-    console.log("cantidad",totalProducts)
+    
     
     return (
         <CartContext.Provider value={{

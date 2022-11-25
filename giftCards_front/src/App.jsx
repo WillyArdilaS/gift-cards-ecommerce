@@ -12,6 +12,7 @@ import ShoppingCartContainer from "./components/ShoppingCartContainer"
 function App() {
   return (
    
+   
     <BrowserRouter>
       <CartProvider>
         <Routes>
