@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
     const [name, setName] = useState("");
@@ -20,15 +21,27 @@ const SignUp = () => {
         e.preventDefault();
 
         if(!username || !lastName || !username || !email || !password || !passwordConfirmation) {
-            alert("Faltan campos por llenar");
+            Swal.fire({
+                icon: 'info',
+                title: 'Faltan campos por llenar',
+            })
         } else {
             axios.get(`http://localhost:3000/clientes/${username}`)
             .then((res) => {
                 if(res.data.length > 0) {
-                    alert("El usuario ya existe");
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'El usuario ya existe',
+                    })
+                    
                 } else {
                     if(password !== passwordConfirmation) {
-                        alert("Las contraseñas no coinciden");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Las contraseñas no coinciden',
+                            text: 'Por favor verifica que las contraseñas sean iguales',
+                        })
+                        
                     } else {
                         axios.post(`http://localhost:3000/clientes`, {
                             username: username,
@@ -39,7 +52,13 @@ const SignUp = () => {
                             saldo: 20000
                         })
                         .then((res) => {
-                            alert("Usuario creado");
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Usuario creado con éxito',
+                                text: '¡Bienvenid@!',
+                                
+                            })
+                            
                             navigate("/LogIn");
                         })
                         .catch((err) => {
@@ -49,7 +68,12 @@ const SignUp = () => {
                 }
             })
             .catch((err) => {
-                alert("Error al hacer el registro");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al hacer el registro',
+                    text: 'Por favor verifica la información que has ingresado',
+                })
+                
                 console.log(err);
             });
         }

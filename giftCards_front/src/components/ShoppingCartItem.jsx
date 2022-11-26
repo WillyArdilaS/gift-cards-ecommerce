@@ -4,85 +4,37 @@ const ShoppingCartItem = ({ card }) => {
     const {removeCard} = useCartContext();
 
     return (
-        <tr className="ml-5 mr-5">
+        <tr className="border-b text-center rounded-2xl">
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-[#F3F6FF]
-                           border-b border-l border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
-                <img src={card.ruta_imagen} alt=""  className='rounded-2xl object-cover'/>
+                <img src={card.ruta_imagen} alt=""  className='rounded-2xl object-cover h-35 w-90 '/>
             </td>
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-white
-                           border-b border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
                 {card.nombre}
             </td>
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-[#F3F6FF]
-                           border-b border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
                 XXXX-XXXX-XXXXX
             </td>
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-white
-                           border-b border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
                 {card.categoria}
             </td>
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-[#F3F6FF]
-                           border-b border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
                 ${card.precio}
             </td>
             <td
-                className="
-                           text-center text-dark
-                           font-medium
-                           text-base
-                           py-5
-                           px-2
-                           bg-white
-                           border-b border-r border-[#E8E8E8]
-                           "
+                className="text-lg font-medium text-white px-3 py-4"
             >
-                <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-                onClick={()=>removeCard(card.id)}>
+                <button className="bg-red-500 hover:bg-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+                onClick={()=>removeCard(card.id_tarjeta)}>
                     Remover
                 </button>
             </td>

@@ -2,11 +2,11 @@ import React from 'react'
 import 'boxicons'
 import { useCartContext } from '../context/CartContext'
 
+
 const CardItem = ({ info }) => {
     const { addCard } = useCartContext();
 
     const onAdd = () => {
-        alert("Tarjeta agregada al carrito")
         addCard(info, 1)
     }
 
