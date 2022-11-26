@@ -9,7 +9,7 @@ const CartProvider= ({children}) => {
 
     
     const addCard = (item,quantity)=>{
-        if (isInCart(item.id)){
+        if (isInCart(item.id_tarjeta)){
             Swal.fire({
                 icon: 'info',
                 title: 'Ya agregaste este producto a tu carrito',
@@ -26,11 +26,11 @@ const CartProvider= ({children}) => {
         }
         
     }
-   
+    
     const clearCart = () =>setCart([])
 
     const isInCart = (id) => {
-        return cart.find(card => card.id === id) ? true : false
+        return cart.find(card => card.id_tarjeta === id) ? true : false
     }
 
     const removeCard = (id) =>{
@@ -39,7 +39,7 @@ const CartProvider= ({children}) => {
             title: 'Producto removido de tu carrito',
             text: '¡Puedes mirar más opciones!',
         })
-        setCart(cart.filter(card=>card.id !== id))
+        setCart(cart.filter(card=>card.id_tarjeta !== id))
         
     }
 

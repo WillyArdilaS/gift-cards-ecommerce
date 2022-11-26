@@ -1,8 +1,8 @@
-import React from 'react'
-import { useCartContext } from '../context/CartContext'
+import { useCartContext } from '../context/CartContext';
 
 const ShoppingCartItem = ({ card }) => {
-    const {removeCard} = useCartContext()
+    const {removeCard} = useCartContext();
+
     return (
         <tr className="border-b text-center rounded-2xl">
             <td
@@ -34,7 +34,7 @@ const ShoppingCartItem = ({ card }) => {
                 className="text-lg font-medium text-white px-3 py-4"
             >
                 <button className="bg-red-500 hover:bg-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
-                onClick={()=>removeCard(card.id)}>
+                onClick={()=>removeCard(card.id_tarjeta)}>
                     Remover
                 </button>
             </td>
@@ -42,4 +42,4 @@ const ShoppingCartItem = ({ card }) => {
     )
 }
 
-export default ShoppingCartItem
+export default ShoppingCartItem;

@@ -5,7 +5,7 @@ const TarjetaSchema = new Schema({
     id_tarjeta:{type: String, required:  true, min: 0},
     nombre:{type: String, required: true, max: 50},
     categoria:{type: String, required: true, max: 50},
-    precio:{type: mongoose.SchemaTypes.Decimal128, required: true, min: 0},
+    precio:{type: mongoose.SchemaTypes.Number, required: true, min: 0},
     descuento:{type: mongoose.SchemaTypes.Boolean, required: true},
     codigo_canjeo:{type: String, required: true, min: 0, max: 10},
     ruta_imagen:{type: String, required: true, min: 0} 
