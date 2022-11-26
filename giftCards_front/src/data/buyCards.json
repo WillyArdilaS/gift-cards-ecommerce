@@ -1,0 +1,20 @@
+[
+    {
+        "fecha_compra":"2019-03-10 02:55:05",
+        "nombre": "Netflix(1 mes)",
+        "codigo_canjeo": "AXL20FG136S",
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713958/Gift%20Cards%20App/Streaming/Netflix_ijqwcz.jpg"
+    },
+    {
+        "fecha_compra":"2019-03-10 02:55:05",
+        "nombre": "HBO Max(1 mes)",
+        "codigo_canjeo": "LVG59AAQNB4",
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713958/Gift%20Cards%20App/Streaming/HBO_Max_ouir2p.jpg"
+    },
+    {
+        "fecha_compra":"2019-03-10 02:55:05",
+        "nombre": "Xbox(2 meses)",
+        "codigo_canjeo": "PNSBV54A4SE",
+        "ruta_imagen": "https://res.cloudinary.com/willyas/image/upload/v1663713959/Gift%20Cards%20App/Videojuegos/Xbox_e4auq8.jpg"
+    }
+]

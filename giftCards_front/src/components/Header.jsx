@@ -28,8 +28,8 @@ const Header = ({onPage, user, setUser, setIsLogin}) => {
                         <li id="navMenu-shopList" className={(onPage == "shoppingList") ? 
                             "w-1/2 text-center border-b-4 pb-2 hover:text-slate-500 transition-colors" :
                             "hover:text-slate-500 transition-colors"}
-                        > Lista de compras </li>
-                        
+                        > <Link to="/ShoppingList"> Lista de compras </Link> </li>
+                          
                     </ul>
                 </nav>
             </div>
@@ -43,8 +43,12 @@ const Header = ({onPage, user, setUser, setIsLogin}) => {
                         <span className="item_total px-2">{totalProducts}</span>
                     </Link>
                 </div>
-                <h2 id="navMenu-username" className="text-slate-200 -ml-2 font-medium"> 
-                {user} </h2>
+                <div className='flex pr-6'>
+                    <box-icon name='user-circle' type='solid' color='#ffffff' className="mr-6 pr-2"></box-icon>
+                    <h2 id="navMenu-username" className="text-slate-200 font-medium ml-2"> 
+                    {user} </h2>
+                </div>
+                
 
                 <button id="button-exitLogo" className="hover:scale-105" onClick={handleLogOut}>
                     <img src="https://res.cloudinary.com/willyas/image/upload/v1664832455/Gift%20Cards%20App/Exit_Icon_jbdrrc.png" 

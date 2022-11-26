@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const Login = ({setIsLogin, setUser}) => {
     const [username, setUsername] = useState("");
@@ -16,15 +17,34 @@ const Login = ({setIsLogin, setUser}) => {
         e.preventDefault();
 
         if(!username || !password) {
-            alert("Faltan campos por llenar");
+            Swal.fire({
+                icon: 'info',
+                title: 'Faltan campos por llenar',
+            })
+            
         } else {
+            Swal.fire({
+                icon: 'success',
+                title: `Bienvenid@ ${username}` ,
+                text: '¡Busca y compra tus tarjetas de regalo favoritas!',
+            })
             axios.get(`http://localhost:3000/clientes/${username}`)
+            
             .then((res) => {
                 if(res.data.length == 0) {
-                    alert("El usuario no está registrado"); 
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'El usuario no está registrado',
+                        text: 'Por favor registra primero tu cuenta.',
+                    })
+                   
                 } else {
                     if(password !== res.data[0].contrasena) {
-                        alert("Contraseña incorrecta"); 
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Contraseña incorrecta',
+                            text: 'Por favor verifica nuevamente tu contraseña',
+                        })
                     } else{
                         setIsLogin(true);
                         setUser(username);
@@ -35,7 +55,10 @@ const Login = ({setIsLogin, setUser}) => {
                 }
             })
             .catch((err) => {
-                alert("Error al ingresar"); 
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al ingresar',
+                })
                 console.log(err);
             });
         }
