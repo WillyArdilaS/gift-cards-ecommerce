@@ -32,7 +32,7 @@ const SignUp = () => {
                     Swal.fire({
                         icon: 'info',
                         title: 'El usuario ya existe',
-                    })
+                    });
                     
                 } else {
                     if(password !== passwordConfirmation) {
@@ -40,7 +40,7 @@ const SignUp = () => {
                             icon: 'error',
                             title: 'Las contraseñas no coinciden',
                             text: 'Por favor verifica que las contraseñas sean iguales',
-                        })
+                        });
                         
                     } else {
                         axios.post(`http://localhost:3000/clientes`, {
@@ -57,7 +57,7 @@ const SignUp = () => {
                                 title: 'Usuario creado con éxito',
                                 text: '¡Bienvenid@!',
                                 
-                            })
+                            });
                             
                             navigate("/LogIn");
                         })

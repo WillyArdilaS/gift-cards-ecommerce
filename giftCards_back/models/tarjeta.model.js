@@ -6,7 +6,6 @@ const TarjetaSchema = new Schema({
     nombre:{type: String, required: true, max: 50},
     categoria:{type: String, required: true, max: 50},
     precio:{type: mongoose.SchemaTypes.Number, required: true, min: 0},
-    descuento:{type: mongoose.SchemaTypes.Boolean, required: true},
     codigo_canjeo:{type: String, required: true, min: 0, max: 10},
     ruta_imagen:{type: String, required: true, min: 0} 
 });

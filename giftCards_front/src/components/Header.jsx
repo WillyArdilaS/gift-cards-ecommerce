@@ -1,15 +1,23 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import 'boxicons';
+import Swal from 'sweetalert2';
 
 const Header = ({onPage, user, setUser, setIsLogin}) => {
-    const { totalProducts } = useCartContext();
+    const {clearCart, totalProducts} = useCartContext();
 
     const navigate = useNavigate()
 
     const handleLogOut = () => {
+        Swal.fire({
+            icon: 'success',
+            title: `¡Hasta la próxima ${user}!` ,
+            text: 'Vuelve cuando quieras',
+        });
+
         setIsLogin(false);
         setUser("");
+        clearCart();
         navigate("/");
     }
 

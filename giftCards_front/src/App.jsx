@@ -16,8 +16,6 @@ function App() {
   const [categorie, setCategorie] = useState("");
 
   return (
-   
-   
     <BrowserRouter>
       <CartProvider>
         <Routes>

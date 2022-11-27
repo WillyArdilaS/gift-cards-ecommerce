@@ -12,7 +12,6 @@ exports.create = function(req, res) {
         nombre: req.body.nombre,
         categoria: req.body.categoria,
         precio: req.body.precio,
-        descuento: req.body.descuento,
         codigo_canjeo: req.body.codigo_canjeo,
         ruta_imagen: req.body.ruta_imagen
     })
@@ -52,7 +51,6 @@ exports.update = function(req, res) {
         nombre: req.body.nombre,
         categoria: req.body.categoria,
         precio: req.body.precio,
-        descuento: req.body.descuento,
         codigo_canjeo: req.body.codigo_canjeo,
         ruta_imagen: req.body.ruta_imagen
     })

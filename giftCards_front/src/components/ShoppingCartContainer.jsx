@@ -1,14 +1,29 @@
-import React from 'react'
-import { useCartContext } from '../context/CartContext'
-import 'boxicons'
-import Header from './Header'
-import ShoppingCartItem from './ShoppingCartItem'
-import Swal from 'sweetalert2'
+import { useCartContext } from '../context/CartContext';
+import 'boxicons';
+import Header from './Header';
+import ShoppingCartItem from './ShoppingCartItem';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const ShoppingCartContainer = ({ user, setUser, setIsLogin }) => {
-   const { cart, totalPrice,clearCart } = useCartContext();
+   let actualDate = "";
+   const { cart, totalPrice, clearCart } = useCartContext();
 
-   const buyCards = ()=>{
+   const getDate = () => {
+      let date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth();
+      let year = date.getFullYear();
+      let hours = date.getHours();
+      let minutes = date.getMinutes;
+      (minutes < 10) ? minutes=`0${minutes}` : minutes;
+
+      date = `${day}/${month}/${year} - ${hours}:${minutes}`;
+      return date;
+   }
+
+   const buyCards = () =>{
       Swal.fire({
          title: '¿Deseas realizar esta compra?',
          text: "Puedes modificar tu carrito si aún no estás segur@",
@@ -19,14 +34,32 @@ const ShoppingCartContainer = ({ user, setUser, setIsLogin }) => {
          confirmButtonText: 'Si comprar'
        }).then((result) => {
          if (result.isConfirmed) {
-           Swal.fire(
-             'Compra realizada',
-             'Puedes ver tus tarjetas adquiridas en "Lista de compras"',
-             'success'
-           )
-           clearCart()
+            cart.map(card => {
+               actualDate = getDate();
+               axios.post(`http://localhost:3000/compras`, {
+                  id_tarjeta: card.id_tarjeta,
+                  username: user,
+                  fecha_compra: actualDate
+               })
+               .then((res) => {
+                  Swal.fire(
+                     'Compra realizada',
+                     'Puedes ver tus tarjetas adquiridas en "Lista de compras"',
+                     'success'
+                  );
+                 clearCart();
+               })
+               .catch((err) => {
+                  Swal.fire({
+                     icon: 'error',
+                     title: 'No se pudo hacer la compra',
+                     text: 'Por favor intenta de nuevo en un momento',
+                 });
+                  console.log(err);
+               });
+            });
          }
-       })
+      });
    }
 
    if (cart.length === 0) {
@@ -93,8 +126,7 @@ const ShoppingCartContainer = ({ user, setUser, setIsLogin }) => {
                            px-3
                            lg:px-4
                            border-l border-transparent
-                           "
-                  >
+                           ">
 
                   </th>
                </tr>
@@ -104,16 +136,15 @@ const ShoppingCartContainer = ({ user, setUser, setIsLogin }) => {
                   cart.map(card => <ShoppingCartItem key={card.id_tarjeta} card={card} />)
                }
 
-
                <tr className="border-b text-right">
 
-                  <td colspan="5"
+                  <td colSpan="5"
                      className="text-lg font-medium text-white px-3 py-4"
                   >
                      Total : ${totalPrice()}
                   </td>
                   <td>
-                     <div classNme="flex flex-col justify-center items-center fixed">
+                     <div className="flex flex-col justify-center items-center ">
                         <button type="button" className="text-white bg-[#050708] font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-green-700" onClick={buyCards}>
                            <img className="mr-3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATtJREFUSEvFle1RwzAQRN9WQAnQAVABpAKgg5QQKsCpAEpIB6QDTAfQAekgHSxzjOzBxh9CJIP+eEaS9+n2pDtx5KEj6zMLsF0BN8AF8AZsJa1zDzYJsF0DVwNitaRFDmQUYHsFPAI7YCmptn0NbIBT4F7S0xxkChB2nAOLEG+EEuQl7JJ0mQ2YsGNOo1kftK2NwLZzlcb2SfrhyL8COt6XRjcawVC4JZBZQGHy24TnAIqS3ziQDWh+sL0HTnp27SSdxVxzG38NaB5cqk0PPcBaUmX7FniOtRJAFLm7dMoogMsE2YR4mm9rVwkgNKqxStqPrBQQkDhlgF7TqaMAhmXxbccQ4CNVya9N35J6sFsUCQovo4IeHjD2Sm13Ist8ze+SogNmtcxOZBmAaFArSdssQIbg5JbZpv9XwCecbbIZmgwnPAAAAABJRU5ErkJggg==" />
                            Realizar compra
@@ -123,12 +154,7 @@ const ShoppingCartContainer = ({ user, setUser, setIsLogin }) => {
 
                </tr>
             </tbody>
-
-
          </table>
-
-
-
       </>
    )
 }
