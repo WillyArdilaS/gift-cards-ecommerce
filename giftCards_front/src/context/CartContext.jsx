@@ -14,20 +14,20 @@ const CartProvider= ({children}) => {
                 icon: 'info',
                 title: 'Ya agregaste este producto a tu carrito',
                 text: '¡Puedes mirar más opciones!',
-            })
+            });
         } else{
-            setCart([...cart,{...item, quantity}])
+            setCart([...cart,{...item, quantity}]);
             Swal.fire({
                 icon: 'success',
                 title: 'Producto agregado a tu carrito',
                 text: '¡Sigue comprando!',
                 
-            })
+            });
         }
         
     }
     
-    const clearCart = () =>setCart([])
+    const clearCart = () => setCart([])
 
     const isInCart = (id) => {
         return cart.find(card => card.id_tarjeta === id) ? true : false
@@ -38,19 +38,16 @@ const CartProvider= ({children}) => {
             icon: 'info',
             title: 'Producto removido de tu carrito',
             text: '¡Puedes mirar más opciones!',
-        })
-        setCart(cart.filter(card=>card.id_tarjeta !== id))
-        
+        });
+        setCart(cart.filter(card=>card.id_tarjeta !== id)) 
     }
 
     const totalPrice=()=>{
         let total = cart.reduce((pre,act) => pre + act.precio,0)
         return total
     }
-
-    
+   
     let totalProducts = cart.length
-    
     
     return (
         <CartContext.Provider value={{
@@ -67,4 +64,4 @@ const CartProvider= ({children}) => {
     )
 }
 
-export default CartProvider
+export default CartProvider;

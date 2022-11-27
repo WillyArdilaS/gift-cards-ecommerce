@@ -20,23 +20,17 @@ const Login = ({setIsLogin, setUser}) => {
             Swal.fire({
                 icon: 'info',
                 title: 'Faltan campos por llenar',
-            })
+            });
             
         } else {
-            Swal.fire({
-                icon: 'success',
-                title: `Bienvenid@ ${username}` ,
-                text: '¡Busca y compra tus tarjetas de regalo favoritas!',
-            })
-            axios.get(`http://localhost:3000/clientes/${username}`)
-            
+            axios.get(`http://localhost:3000/clientes/${username}`) 
             .then((res) => {
                 if(res.data.length == 0) {
                     Swal.fire({
                         icon: 'error',
                         title: 'El usuario no está registrado',
                         text: 'Por favor registra primero tu cuenta.',
-                    })
+                    });
                    
                 } else {
                     if(password !== res.data[0].contrasena) {
@@ -44,10 +38,17 @@ const Login = ({setIsLogin, setUser}) => {
                             icon: 'error',
                             title: 'Contraseña incorrecta',
                             text: 'Por favor verifica nuevamente tu contraseña',
-                        })
+                        });
                     } else{
                         setIsLogin(true);
                         setUser(username);
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Bienvenid@ ${username}` ,
+                            text: '¡Busca y compra tus tarjetas de regalo favoritas!',
+                        });
+
                         navigate("/Home", {
                             replace: ("/LogIn", true)
                         });
